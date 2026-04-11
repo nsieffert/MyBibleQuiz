@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="mt-4 mb-4">Quiz Loading Form</h1>
+        <div class="text-center">
+       {% load static %}
+    <img src="{% static 'images/3dprint.png' %}" style='width:250px' salt="Centered Image">
+    <style>
+     H1 {
+        text-align: center;
+     }
+    H3 {
+        padding: 2px;
+    }
+      {
+         align-content: center;
+     }
+    </style>
+</div>
+
+    <form method="post">
+    {% csrf_token %}
+        <h3>*** Inventory Form ***</h3>
+        <div class="form-group mb-4">
+            <label for="item_name">Item Name:</label>
+            <input class="form-control" type="text" id="item_name" name="item_name">
+        </div>
+        <div class="form-group mb-4">
+            <label for="Supplier_name">Supplier Name:</label>
+            <input class="form-control" type="text" id="supplier_name" name="supplier_name">
+        </div>
+        <div class="form-group mb-4">
+            <label for="item_type">Item Type:</label>
+            <input class="form-control" type="text" id="item_type" name="item_type">
+        </div>
+        <div class="form-group mb-4">
+            <label for="item_description">Item Description:</label>
+            <input class="form-control" type="text" id="item_description" name="item_description">
+        </div>
+        <div class="form-group mb-4">
+            <label for="item_cost">Item Cost:</label>
+            <input class="form-control" type="text" id="item_cost" name="item_cost">
+        </div>
+
+        <button class ="btn btn-secondary mb-4" type="submit">Submit</button>
+        {% if messages %}
+        <div class="alert alert-warning" role="alert">
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+        </div>
+        {% endif %}
+
+    </form>
+    {% endblock content %}
