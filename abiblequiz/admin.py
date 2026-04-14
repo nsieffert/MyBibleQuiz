@@ -1,20 +1,12 @@
 from django.contrib import admin
-from .models import BibleQuiz, BibleQuizLoad
+from .models import BibleQuiz
 
 class BibleQuizAdmin(admin.ModelAdmin):
-    list_display = ('level', 'question', 'correct_answer')
-    list_filter = ('level', 'question', 'correct_answer')
-    search_fields = ('level', 'question', 'correct_answer')
-    ordering = ('level', 'question', 'correct_answer')
-
-
-class BibleQuizLoadAdmin(admin.ModelAdmin):
-    list_display = ('level', 'question', 'correct_answer')
-    list_filter = ('level', 'question', 'correct_answer')
-    search_fields = ('level', 'question', 'correct_answer')
-    ordering = ('level', 'question', 'correct_answer')
+    list_display = ('category', 'difficulty', 'question_text', 'correct_answer', 'reference')
+    list_filter = ('category', 'difficulty', 'question_text', 'correct_answer', 'reference')
+    search_fields = ('category', 'difficulty', 'question_text', 'correct_answer', 'reference')
+    ordering = ('category', 'difficulty', 'question_text', 'correct_answer', 'reference')
 
 
 admin.site.register(BibleQuiz, BibleQuizAdmin)
-admin.site.register(BibleQuizLoad, BibleQuizLoadAdmin)
 

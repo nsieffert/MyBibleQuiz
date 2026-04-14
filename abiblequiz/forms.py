@@ -2,20 +2,12 @@ from django import forms
 
 
 class BibleQuizForm(forms.Form):
-    level = forms.IntegerField()
-    question = forms.CharField(max_length=200)
-    optionA = forms.CharField(max_length=200)
-    optionB = forms.CharField(max_length=200)
-    optionC = forms.CharField(max_length=200)
-    optionD = forms.CharField(max_length=200)
+    category = forms.CharField(max_length=100)
+    difficulty = forms.CharField(max_length=100)
+    question_text = forms.CharField(max_length=200)
+    option_a = forms.CharField(max_length=400)
+    option_b = forms.CharField(max_length=400)
+    option_c = forms.CharField(max_length=400)
+    option_d = forms.CharField(max_length=400)
     correct_answer = forms.CharField(max_length=200)
-
-
-class BibleQuizLoadForm(forms.Form):
-    level = forms.IntegerField()
-    question = forms.CharField(max_length=200)
-    optionA = forms.CharField(max_length=200)
-    optionB = forms.CharField(max_length=200)
-    optionC = forms.CharField(max_length=200)
-    optionD = forms.CharField(max_length=200)
-    correct_answer = forms.CharField(max_length=200)
+    reference = forms.CharField(max_length=400)

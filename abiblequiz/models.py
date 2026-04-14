@@ -2,26 +2,15 @@ from django.db import models
 
 
 class BibleQuiz(models.Model):
-    level = models.IntegerField()
-    question = models.CharField(max_length=200)
-    optionA = models.CharField(max_length=200)
-    optionB = models.CharField(max_length=200)
-    optionC = models.CharField(max_length=200)
-    optionD = models.CharField(max_length=200)
+    category = models.CharField(max_length = 100)
+    difficulty = models.CharField(max_length = 100)
+    question_text = models.CharField(max_length = 200)
+    option_a = models.CharField(max_length=400)
+    option_b = models.CharField(max_length=400)
+    option_c = models.CharField(max_length=400)
+    option_d = models.CharField(max_length=400)
     correct_answer = models.CharField(max_length=200)
+    reference = models.CharField(max_length = 200)
 
     def __str__(self):
-        return self.question
-
-
-class BibleQuizLoad(models.Model):
-    level = models.IntegerField()
-    question = models.CharField(max_length=200)
-    optionA = models.CharField(max_length=200)
-    optionB = models.CharField(max_length=200)
-    optionC = models.CharField(max_length=200)
-    optionD = models.CharField(max_length=200)
-    correct_answer = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.question
+        return self.question_text

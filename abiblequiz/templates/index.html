@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <title>Bible Quiz</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; }
+        .success { color: green; font-weight: bold; }
+        .error { color: red; font-weight: bold; }
+        .score-box { background-color: #f4f4f4; padding: 10px; border-radius: 5px; width: fit-content; }
+        .btn { padding: 5px 15px; margin-left: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h1>Bible Quiz: Test Your Knowledge!</h1>
+
+    <!-- Display the running score this is pulled from the views page line 22 -->
+    <div class="score-box">
+        <h3>Current Score: {{ score }}</h3>
+    </div>
+
+    <div class="separator"></div>
+
+<style>
+.separator {
+    border-top: 4px solid blue;
+    margin: 20px 0;
+}
+</style>
+
+    <!-- STATE 1: If the user reached the end of the game - this goes with line 18 on views
+     game over is initialized on line 21 in views-->
+    {% if game_over %}
+        <h2>🎉 Game Over! 🎉</h2>
+        <p>You scored <strong>{{ score }}</strong> correct out of <strong>{{ total }}</strong> total questions.</p>
+
+        <!-- This button clears the score sets offers link to play again, sending to setup -->
+        <p><a href="{% url 'setup' %}">Play Again</a></p>
+
+    <!-- STATE 2: If there are still questions to answer -->
+    {% elif question %}
+
+        <!-- 1. Display the Question and Options on single lines -->
+        <p><strong>Question:</strong> {{ question.question_text }}</p>
+        <p><strong>Option A:</strong> {{ question.option_a }}</p>
+        <p><strong>Option B:</strong> {{ question.option_b }}</p>
+        <p><strong>Option C:</strong> {{ question.option_c }}</p>
+        <p><strong>Option D:</strong> {{ question.option_d }}</p>
+    <br>
+        <p>Reference: {{ question.reference }}</p>
+
+        <!-- 2. The Input Form for the Answer -->
+        <form method="POST">
+            {% csrf_token %}
+            <label for="answer">Type your answer letter (A, B, C, or D): </label>
+            <input type="text" id="answer" name="user_answer" maxlength="1" required style="width: 35px; text-transform: uppercase;">
+            <button type="submit" class="btn">Submit Answer</button>
+        </form>
+
+        <!-- 3. Show feedback after they guess -->
+        {% if message %}
+            <p class="{% if is_correct %}success{% else %}error{% endif %}">
+                {{ message }}
+            </p>
+        {% endif %}
+
+        <!-- 4. Show the 'Next Question' button ONLY after they answer the current one -->
+        {% if show_next_button %}
+            <form method="POST">
+                {% csrf_token %}
+                <!-- This hidden input tells Python to move to the next question index -->
+                <button type="submit" name="next_question" class="btn" style="background-color: #007bff; color: white;">
+                     Next Question ➡️
+                 </button>
+          {% endif %}
+
+                <hr>
+         {% if show_end_button %}
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" name="end_game" class="btn" style="background-color: #007bff; color: white;">
+                    End Game ➡️
+                </button>
+            </form>
+        {% endif %}
+
+    {% else %}
+        <p>No questions found in the database!</p>
+    {% endif %}
+
+{% endblock %}
