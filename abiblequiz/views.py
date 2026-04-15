@@ -1,5 +1,7 @@
-from django.shortcuts import render, redirect
-from .models import BibleQuiz
+from django.shortcuts import render, redirect, get_object_or_404
+
+from . import models
+from .models import BibleQuiz, VerseOfDay
 import random
 
 
@@ -115,3 +117,29 @@ def setup(request):
         'difficulties': difficulties,
     }
     return render(request, 'setup.html', context)
+
+
+def verseofday(request, verse_id=None):
+    theme = VerseOfDay.objects.order_by('theme').first()
+    address = VerseOfDay.objects.order_by('address').first()
+    verse = VerseOfDay.objects.order_by('verse').first()
+
+    if verse_id is None:
+        verse = VerseOfDay.objects.order_by('id').first()
+    else:
+        verse = get_object_or_404(VerseOfDay, id=verse_id)
+
+    # Try to get the next verse
+    next_verse = VerseOfDay.objects.filter(id__gt=verse.id).order_by('?').first()
+
+    # If there is no next verse, loop back to the first one
+    if not next_verse:
+        next_verse = VerseOfDay.objects.order_by('?').first()
+
+    context = {
+        'theme': theme,
+        'address': address,
+        'verse': verse,
+        'next_verse': next_verse}
+
+    return render(request, 'verseofday.html',  context)

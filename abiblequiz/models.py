@@ -14,3 +14,9 @@ class BibleQuiz(models.Model):
 
     def __str__(self):
         return self.question_text
+
+
+class VerseOfDay(models.Model):
+    theme = models.CharField(max_length = 100)
+    address = models.CharField(max_length = 100)
+    verse = models.CharField(max_length = 1000)

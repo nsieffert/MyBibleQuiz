@@ -11,3 +11,9 @@ class BibleQuizForm(forms.Form):
     option_d = forms.CharField(max_length=400)
     correct_answer = forms.CharField(max_length=200)
     reference = forms.CharField(max_length=400)
+
+
+class VerseOfDayForm(forms.Form):
+    theme = forms.CharField(max_length = 100)
+    address = forms.CharField(max_length = 100)
+    verse = forms.CharField(max_length = 1000)

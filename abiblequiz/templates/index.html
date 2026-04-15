@@ -34,7 +34,7 @@
         <h2>🎉 Game Over! 🎉</h2>
         <p>You scored <strong>{{ score }}</strong> correct out of <strong>{{ total }}</strong> total questions.</p>
 
-        <!-- This button clears the score sets offers link to play again, sending to setup -->
+        <!-- This button clears the score, sends user to setup -->
         <p><a href="{% url 'setup' %}">Play Again</a></p>
 
     <!-- STATE 2: If there are still questions to answer -->
@@ -46,8 +46,6 @@
         <p><strong>Option B:</strong> {{ question.option_b }}</p>
         <p><strong>Option C:</strong> {{ question.option_c }}</p>
         <p><strong>Option D:</strong> {{ question.option_d }}</p>
-    <br>
-        <p>Reference: {{ question.reference }}</p>
 
         <!-- 2. The Input Form for the Answer -->
         <form method="POST">
@@ -57,7 +55,12 @@
             <button type="submit" class="btn">Submit Answer</button>
         </form>
 
-        <!-- 3. Show feedback after they guess -->
+    <br>
+        <p>Reference: {{ question.reference }}</p>
+        <p>Category: {{ question.category }}</p>
+        <p>Difficulty: {{ question.difficulty }}</p>
+
+    <!-- 3. Show feedback after they guess -->
         {% if message %}
             <p class="{% if is_correct %}success{% else %}error{% endif %}">
                 {{ message }}
@@ -82,10 +85,11 @@
                     End Game ➡️
                 </button>
             </form>
+            </form>
         {% endif %}
-
     {% else %}
         <p>No questions found in the database!</p>
     {% endif %}
 
-{% endblock %}
+
+    {% endblock %}
