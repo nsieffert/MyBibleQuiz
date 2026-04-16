@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    <title>Bible Quiz</title>
     <style>
         body { font-family: sans-serif; margin: 40px; }
         .success { color: green; font-weight: bold; }
@@ -9,13 +8,11 @@
         .score-box { background-color: #f4f4f4; padding: 10px; border-radius: 5px; width: fit-content; }
         .btn { padding: 5px 15px; margin-left: 10px; cursor: pointer; }
     </style>
-</head>
-<body>
-
-    <h1>Bible Quiz: Test Your Knowledge!</h1>
+<br>
+    <h1 style="margin-left: 80px">Bible Quiz: Test Your Knowledge! 📖 </h1>
 
     <!-- Display the running score this is pulled from the views page line 22 -->
-    <div class="score-box">
+    <div class="score-box" style="margin-left: 75px">
         <h3>Current Score: {{ score }}</h3>
     </div>
 
@@ -28,6 +25,7 @@
 }
 </style>
 
+<div style="margin-left: 75px">
     <!-- STATE 1: If the user reached the end of the game - this goes with line 18 on views
      game over is initialized on line 21 in views-->
     {% if game_over %}
@@ -48,19 +46,16 @@
         <p><strong>Option D:</strong> {{ question.option_d }}</p>
 
         <!-- 2. The Input Form for the Answer -->
+
         <form method="POST">
             {% csrf_token %}
             <label for="answer">Type your answer letter (A, B, C, or D): </label>
             <input type="text" id="answer" name="user_answer" maxlength="1" required style="width: 35px; text-transform: uppercase;">
-            <button type="submit" class="btn">Submit Answer ➡️</button>
+            <button type="submit" name="submit_answer" class="btn" style="background-color: #007bff; color: white;">
+                     Submit Answer ➡️ </button>
         </form>
 
-    <br>
-        <p>Reference: {{ question.reference }}</p>
-        <p>Category: {{ question.category }}</p>
-        <p>Difficulty: {{ question.difficulty }}</p>
-
-    <!-- 3. Show feedback after they guess -->
+        <!-- 3. Show feedback after they guess -->
         {% if message %}
             <p class="{% if is_correct %}success{% else %}error{% endif %}">
                 {{ message }}
@@ -76,8 +71,14 @@
                      Next Question ➡️
                  </button>
           {% endif %}
+            </form>
+</div>
+<div style="margin-left: 75px">
+        <hr>
+        <p>Reference: {{ question.reference }}</p>
+        <p>Category: {{ question.category }}</p>
+        <p>Difficulty: {{ question.difficulty }}</p>
 
-                <hr>
          {% if show_end_button %}
             <form method="POST">
                 {% csrf_token %}
@@ -85,11 +86,11 @@
                     End Game ➡️
                 </button>
             </form>
-            </form>
         {% endif %}
     {% else %}
         <p>No questions found in the database!</p>
     {% endif %}
+</div>
 
 
     {% endblock %}

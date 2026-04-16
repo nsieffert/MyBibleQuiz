@@ -3,7 +3,7 @@
 <h1 class="mt-4 mb-4">Contact Us</h1>
         <div class="text-center">
        {% load static %}
-    <img src="{% static 'email.png' %}" style='width:200px' alt="Centered Image">
+    <img src="{% static 'images/email.png' %}" style='width:100px' alt="Centered Image">
     <style>
      H1 {
         text-align: center;
@@ -43,4 +43,13 @@
     {% endif %}
 
     </form>
+<div class="separator"></div>
+
+<style>
+.separator {
+    border-top: 4px solid blue;
+    margin: 20px 0;
+}
+</style>
+
     {% endblock content %}

@@ -10,15 +10,27 @@
     </style>
     {% csrf_token %}
     <br>
-    <h1>The Word of God is Quick and Powerful!</h1>
-    <hr>
-    <div class="verse_container">
+    <div class="text-center">
+       <h1> 📖 The Word of God is Quick and Powerful! 📖</h1>
+        </div>
+            <hr>
+
+    <div class="verse_container" style="margin-left: 75px">
         <p><strong>Theme:</strong> {{ next_verse.theme }}
         <p><strong>Address:</strong> {{ next_verse.address }}</p>
         <p><strong>Verse:</strong> {{ next_verse.verse }}</p>
     </div>
+<div class="separator"></div>
+
+<style>
+.separator {
+    border-top: 4px solid blue;
+    margin: 20px 0;
+}
+</style>
+
        <form action="{% url 'verseofday_with_id' next_verse.id %}" method="get" class="next-button">
-    <button type="submit">Next</button>
+    <button type="submit" style="margin-left: 75px">Next</button>
 </form>
 
 <style>

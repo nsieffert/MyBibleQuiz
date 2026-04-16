@@ -2,11 +2,11 @@
 {% block content %}
 <div class="text-center">
 <h1 class="mt-4 mb-4">Submit Your Own Questions!</h1>
-<h3 class="mt-4 mb-4">(Subject to review)</h3>
+<p class="mt-4 mb-4">(Subject to review)</p>
 </div>
         <div class="text-center">
        {% load static %}
-        <img src="{% static 'questionmark.png' %}" style='width:200px' alt="Centered Image">
+        <img src="{% static 'images/questionmark.png' %}" style='width:35px' alt="Centered Image">
     <style>
      H1 {
         text-align: center;
@@ -70,4 +70,5 @@
     {% endif %}
 
     </form>
+
     {% endblock content %}

@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    <title>Quiz Setup</title>
     <style>body { font-family: sans-serif; margin: 40px; }</style>
-
-    <h1>Welcome to the Quiz Game!</h1>
-    <p>Please select your game options below:</p>
+<br>
+<div class="margin-left: 75px">
+    <h1><strong> ❓ Welcome to the Quiz Game! ❓ </strong></h1>
+    <p style="margin-left: 65px"><strong>Please select your game options below:</strong></p>
 
     <form method="POST">
         {% csrf_token %}
-
-    <p>
+<br>
+    <p style="margin-left: 65px">
     <label for="category">Choose a Category:</label>
     <select id="category" name="category">
         <!-- Add the "All" option here -->
@@ -20,7 +20,7 @@
         {% endfor %}
     </select>
     </p>
-    <p>
+    <p style="margin-left: 65px">
     <label for="difficulty">Choose Difficulty:</label>
     <select id="difficulty" name="difficulty">
         <!-- Add the "All" option here -->
@@ -30,7 +30,17 @@
         {% endfor %}
     </select>
 </p>
-
-        <button type="submit" style="padding: 10px 20px; cursor: pointer;">Start Quiz! 🚀</button>
+<br>
+        <button type="submit" style="margin-left: 65px; cursor: pointer;">Start Quiz! 🚀</button>
+        </div>
     </form>
+<br>
+<div class="separator"></div>
+
+<style>
+.separator {
+    border-top: 4px solid blue;
+    margin: 20px 0;
+}
+</style>
 {% endblock %}
