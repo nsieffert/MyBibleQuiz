@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="mt-4 mb-4">Contact Us</h1>
+        <div class="text-center">
+       {% load static %}
+    <img src="{% static 'email.png' %}" style='width:200px' alt="Centered Image">
+    <style>
+     H1 {
+        text-align: center;
+     }
+    H3 {
+        padding: 2px;
+    }
+      {
+         align-content: center;
+     }
+
+    </style>
+</div>
+    <form method="post">
+    {% csrf_token %}
+    <h3>*** Contact Form ***</h3>
+        <div class="form-group mb-4">
+            <label for="name">Name:</label>
+            <input class="form-control" type="text" id="name" name="name">
+        </div>
+            <div class="form-group mb-4">
+            <label for="email">email:</label>
+            <input class="form-control" type="email" id="email" name="email">
+        </div>
+            <div class="form-group mb-4">
+            <label for="note">Your Note:</label>
+            <input class="form-control" type="text" id="note" name="note">
+        </div>
+
+       <button class ="btn btn-secondary mb-4" type="submit">Submit</button>
+    {% if messages %}
+    <div class="alert alert-warning" role="alert">
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+    </div>
+    {% endif %}
+
+    </form>
+    {% endblock content %}

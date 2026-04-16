@@ -5,4 +5,7 @@ urlpatterns = [
     path('setup', views.setup, name='setup'),  # Make the setup screen the default home page!
     path('index', views.index, name='index'),
     path('verseofday/', views.verseofday, name='verseofday'),
-    path('verseofday/<int:verse_id>/', views.verseofday, name='verseofday_with_id'),]
+    path('verseofday/<int:verse_id>/', views.verseofday, name='verseofday_with_id'),
+    path('contact', views.contact, name='contact'),
+    path('submitquestion', views.submitquestion, name='submitquestion'),
+]

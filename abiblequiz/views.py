@@ -1,7 +1,7 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
-
-from . import models
-from .models import BibleQuiz, VerseOfDay
+from .models import BibleQuiz, VerseOfDay, Contact, SubmitQuestion
+from .forms import ContactForm, SubmitQuestionForm
 import random
 
 
@@ -143,3 +143,51 @@ def verseofday(request, verse_id=None):
         'next_verse': next_verse}
 
     return render(request, 'verseofday.html',  context)
+
+
+def contact(request):
+    if request.method == "POST":
+        user = ContactForm(request.POST)
+        if user.is_valid():
+            name = user.cleaned_data["name"]
+            email = user.cleaned_data["email"]
+            note = user.cleaned_data["note"]
+
+            # this section stores the data in the database
+            Contact.objects.create(name=name,
+                                    email=email,
+                                    note=note)
+            messages.success(request, "Message Successful")
+
+    return render(request, 'contact.html')
+
+
+def submitquestion(request):
+    if request.method == "POST":
+        quester = SubmitQuestionForm(request.POST)
+        if quester.is_valid():
+            category = quester.cleaned_data["category"]
+            difficulty = quester.cleaned_data["difficulty"]
+            question_text = quester.cleaned_data["question_text"]
+            option_a = quester.cleaned_data["option_a"]
+            option_b = quester.cleaned_data["option_b"]
+            option_c = quester.cleaned_data["option_c"]
+            option_d = quester.cleaned_data["option_d"]
+            correct_answer = quester.cleaned_data["correct_answer"]
+            reference = quester.cleaned_data["reference"]
+
+            # this section stores the data in the database
+            SubmitQuestion.objects.create(
+                category=category,
+                difficulty=difficulty,
+                question_text=question_text,
+                option_a=option_a,
+                option_b=option_b,
+                option_c=option_c,
+                option_d=option_d,
+                correct_answer=correct_answer,
+                reference=reference)
+
+            messages.success(request, "Submission Successful")
+
+    return render(request, 'submitquestion.html')
