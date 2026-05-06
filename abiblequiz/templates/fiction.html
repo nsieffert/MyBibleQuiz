@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <style>
+        body { font-family: sans-serif; margin: 40px; }
+        .success { color: green; font-weight: bold; }
+        .error { color: red; font-weight: bold; }
+        .score-box { background-color: #f4f4f4; padding: 10px; border-radius: 5px; width: fit-content; }
+        .btn { padding: 5px 15px; margin-left: 10px; cursor: pointer; }
+    </style>
+    {% csrf_token %}
+    <br>
+    <div class="text-center">
+       <h1> 📚 Fiction Titles by Norita Sieffert 📚 </h1>
+        </div>
+            <hr>
+
+    <div class="verse_container" style="margin-left: 75px">
+        <p><strong>Title:</strong> {{ next_title.title }}</p>
+        <p><strong>Synopsis:</strong> {{ next_title.synopsis }}</p>
+    </div>
+<div class="separator"></div>
+
+<style>
+.separator {
+    border-top: 4px solid blue;
+    margin: 20px 0;
+}
+</style>
+
+       <form action="{% url 'fiction_with_id' next_title.id %}" method="get" class="next-button">
+    <button type="submit" style="margin-left: 75px">Next</button>
+</form>
+
+<style>
+.verse-container {
+    min-height: 150px; /* adjust so it fits your longest verse */
+}
+
+.next-button {
+    margin-top: 10px;
+}
+</style>
+<br>
+<div class="pictures">
+       {% load static %}
+   <a href="https://www.amazon.com/Unprepared-1-N-Sieffert-PhD/dp/1514645947/">
+       <img src="{% static 'images/unprepared.png' %}" style='width:220px' alt="centered"> </a>
+    <a href=https://www.amazon.com/dp/B0DC6MXNYK/">
+    <img src="{% static 'images/unprepared2.png' %}" style='width:220px' alt="centered"></a>
+    <a href="https://www.amazon.com/Morabi-Novel-Norita-Sieffert/dp/1726133508/">
+    <img src="{% static 'images/morabi.png' %}" style='width:220px' alt="centered"></a>
+    <a href="https://www.amazon.com/Seer-Remmon-Novel-Norita-Sieffert/dp/1726116522/">
+        <img src="{% static 'images/remmon.png' %}" style='width:220px' alt="centered"></a>
+    <a href="https://www.amazon.com/Little-Flower-Koramar-Norita-Sieffert/dp/1726072592/">
+        <img src="{% static 'images/flower.png' %}" style='width:220px' alt="centered"></a>
+    <a href="https://www.amazon.com/Puzzle-Norita-J-Sieffert/dp/096729990X/">
+        <img src="{% static 'images/puzzle.png' %}" style='width:210px' alt="centered"></a>
+    <a href="https://www.amazon.com/Colony-Twelve-Novel-Norita-Sieffert/dp/1726136493/">
+        <img src="{% static 'images/col12.png' %}" style='width:230px' alt="centered"></a>
+    <a href="https://www.amazon.com/Face-My-Enemy-Norita-Sieffert/dp/1726057720/">
+        <img src="{% static 'images/face.png' %}" style='width:220px' alt="centered"></a>
+    <a href="https://www.amazon.com/Stone-Jirrah-Novel-Norita-SIeffert/dp/1726071294/">
+        <img src="{% static 'images/Jirrah.png' %}" style='width:220px' alt="centered"></a>
+        <a href="https://author.amazon.com/profile">
+        <img src="{% static 'images/me.png' %}" style='width:232px' alt="centered"></a>
+</div>
+
+<style>
+.pictures {
+    align-items: center;
+    padding: 10px;
+    border: blue;
+    margin-left: 50px;
+;
+
+}
+</style>
+    <style>
+        H1 {
+        text-align: center;
+     }
+    H3 {
+        padding: 25px;
+    }
+      {
+         align-content: center;
+     }
+
+    </style>
+</div>
+
+    {% endblock %}

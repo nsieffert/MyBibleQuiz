@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <style>
+        body { font-family: sans-serif; margin: 40px; }
+        .success { color: green; font-weight: bold; }
+        .error { color: red; font-weight: bold; }
+        .score-box { background-color: #f4f4f4; padding: 10px; border-radius: 5px; width: fit-content; }
+        .btn { padding: 5px 15px; margin-left: 10px; cursor: pointer; }
+    </style>
+    {% csrf_token %}
+    <br>
+    <div class="text-center">
+       <h1> 📖 Defending the Christian Faith! 📖</h1>
+        </div>
+            <hr>
+
+    <div class="verse_container" style="margin-left: 75px">
+        <p><strong>Topic:</strong> {{ next_topic.topic }}
+        <p><strong>Defense:</strong> {{ next_topic.defense }}</p>
+    </div>
+<div class="separator"></div>
+
+<style>
+.separator {
+    border-top: 4px solid blue;
+    margin: 20px 0;
+}
+</style>
+
+       <form action="{% url 'apologetics_with_id' next_topic.id %}" method="get" class="next-button">
+    <button type="submit" style="margin-left: 75px">Next</button>
+</form>
+
+<style>
+.verse-container {
+    min-height: 150px; /* adjust so it fits your longest verse */
+}
+
+.next-button {
+    margin-top: 10px;
+}
+</style>
+
+<!--     {% if next_verse %}-->
+<!--        <form action="{% url 'verseofday_with_id' next_verse.id %}" method="get">-->
+<!--            <button type="submit">Next</button>-->
+<!--        </form>-->
+<!--    {% endif %}-->
+
+    {% endblock %}
